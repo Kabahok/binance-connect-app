@@ -5,6 +5,8 @@ import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
 
+import org.json.simple.*;
+
 
 public class BinanceConnectionWebSocket extends WebSocketClient {
 
@@ -14,7 +16,7 @@ public class BinanceConnectionWebSocket extends WebSocketClient {
 
     @Override
     public void onOpen(ServerHandshake serverHandshake) {
-        System.out.println(serverHandshake.getHttpStatus());
+
     }
 
     @Override
