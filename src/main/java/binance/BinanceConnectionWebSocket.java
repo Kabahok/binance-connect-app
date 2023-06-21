@@ -6,6 +6,8 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.net.URI;
 
 import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class BinanceConnectionWebSocket extends WebSocketClient {
@@ -21,7 +23,11 @@ public class BinanceConnectionWebSocket extends WebSocketClient {
 
     @Override
     public void onMessage(String s) {
-        System.out.println(s);
+        try {
+            System.out.println(parseDateFromJSON(s));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -31,6 +37,12 @@ public class BinanceConnectionWebSocket extends WebSocketClient {
 
     @Override
     public void onError(Exception e) {
-        System.out.println("Error");
+        System.out.println(e.getMessage());
+    }
+
+
+    public static JSONObject parseDateFromJSON(String jsonString) throws ParseException {
+        JSONParser parser = new JSONParser();
+        return (JSONObject) ((JSONObject) parser.parse(jsonString)).get("data");
     }
 }
