@@ -17,8 +17,6 @@ public class Main {
             BinanceConnectionWebSocket client = new BinanceConnectionWebSocket(url);
             client.connect();
 
-            client.close();
-
         } catch (URISyntaxException e) {
             System.out.println(e.getMessage());
         }
