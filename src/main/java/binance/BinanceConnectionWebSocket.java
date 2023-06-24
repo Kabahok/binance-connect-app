@@ -24,7 +24,7 @@ public class BinanceConnectionWebSocket extends WebSocketClient {
     @Override
     public void onMessage(String s) {
         try {
-            System.out.println(parseDateFromJSON(s));
+            parseDateFromJSON(s);
         } catch (ParseException e) {
             e.printStackTrace();
         }
