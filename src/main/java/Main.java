@@ -29,18 +29,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        try {
-//
-//            URI url = new URI(URL);
-//            BinanceConnectionWebSocket client = new BinanceConnectionWebSocket(url);
-//            client.connect();
-//
-//            client.close();
-//
-//        } catch (URISyntaxException e) {
-//            System.out.println(e.getMessage());
-//        }
-
         for (int i = 0; i < dataSet.size(); i++) {
             Thread thread = new Thread(new personalStream(dataSet.get(i)));
             thread.start();
@@ -62,7 +50,16 @@ class personalStream implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(dataList);
+
+        try {
+
+            BinanceConnectionWebSocket client = new BinanceConnectionWebSocket(new URI(dataList.get(0)));
+            client.connect();
+
+
+        } catch (URISyntaxException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 }
